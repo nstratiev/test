@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Калкулатор - тесто за баница (online)">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тесто за баница (online калкулатор)</title>
+  <!-- <link rel="icon" type="image/x-icon" href="../favicon_rolling-pin_5637312.png"> -->
+
+  <!-- <link rel="stylesheet" href="./global/css/index.css">
+  <link rel="stylesheet" href="./global/css/details.css">
+  <link rel="stylesheet" href="./global/css/top-nav.css">
+  <link rel="stylesheet" href="./global/css/borders.css">
+  <link rel="stylesheet" href="./global/css/buttons.css">
+  <link rel="stylesheet" href="./global/css/legend.css">
+  <link rel="stylesheet" href="./global/css/small-elements.css">
+  <link rel="stylesheet" href="./global/css/queries.css">
+  <link rel="stylesheet" href="./global/css/modal.css"> -->
+  <!-- ################ -->
+  <!-- <link rel="stylesheet" href="./global/css/global-export.css">
+  <link rel="stylesheet" href="./css/style.css"> -->
+  <style>
+    /* ##### Index [Start] ##### */
+    :root {
+      --black-color: rgb(53, 59, 65);
+      --black-color-2: rgb(74, 80, 87);
+      --yellow-input-bg-color: rgb(255, 255, 153);
+      --orange-input-bg-color: rgb(255, 204, 102);
+      --orange-menu-color: rgb(226, 107, 10);
+      --red-menu-color: rgb(192, 0, 0);
+      --grey-bg: rgb(248, 248, 248);
+      --blue-text-links: #366092;
+
+      /* From menu style.css */
+      --blue-font-color: rgb(54, 96, 146);
+      --red-font-color: rgb(192, 0, 0);
+      --grey-bg-color: rgb(248, 248, 248);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black-color);
+      text-align: center;
+      height: 100vh;
+    }
+
+    :focus {
+      outline: none;
+      box-shadow: 0 0 4px 4px gray;
+    }
+
+    /* ##### Common styles ##### */
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .--grid-2-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .--grid-3-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* ##### Text styles ##### */
+    code {
+      font-family: monospace, monospace;
+      font-weight: bold;
+      font-size: 110%;
+      color: green;
+    }
+
+    .superscript {
+      /* vertical-align: top; */
+      position: relative;
+      top: -0.3em;
+      font-size: 80%;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .text-green {
+      color: green;
+    }
+
+    .said-in-different-way {
+      text-align: center;
+      margin-top: 10px;
+      color: #366992;
+      font-weight: bold;
+    }
+
+    .used-when {
+      text-indent: 16px;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    .and-txt {
+      text-align: center;
+      color: #366992;
+      font-weight: bold;
+    }
+
+    /* ##### Main elements ##### */
+    body,
+    .page-column,
+    form,
+    aside.legend,
+    div.legend {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    main,
+    form {
+      width: 100%;
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    header.-page,
+    footer.-page {
+      background-color: rgb(248, 248, 248);
+      width: 100%;
+    }
+
+    header.-page {
+      padding: 6px;
+    }
+
+    footer.-page {
+      /* margin-top: auto; */
+      margin-top: 40px;
+      text-align: initial;
+      padding: 8px 8px 8px 20px;
+    }
+
+    footer ul {
+      list-style-type: none;
+      list-style-position: inside;
+    }
+
+    footer ul li {
+      margin: 10px 0px;
+    }
+
+    .page-footer-link:link,
+    .page-footer-link:visited {
+      display: inline-block;
+      padding: 6px 20px 6px 10px;
+      color: #366092;
+    }
+
+    .page-column {
+      padding: 0 5px;
+    }
+
+    /* ##### Small elements ##### */
+    hr {
+      max-width: 300px;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* ##### Card ##### */
+    fieldset,
+    article.card {
+      max-width: 320px;
+      width: 100%;
+    }
+
+    article.card,
+    aside.legend,
+    div.legend {
+      margin: 0 20px 40px;
+    }
+
+    article.card.--last-child {
+      margin-bottom: 20px;
+    }
+
+    article.card {
+      border: 2px solid black;
+    }
+
+    article.card>header,
+    .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    article.card>header {
+      background-color: rgb(220, 230, 241);
+      padding: 2px 2px 4px 2px;
+      text-decoration: underline;
+    }
+
+    article.card>header.no-underline {
+      text-decoration: none;
+    }
+
+    .card-body {
+      padding: 16px;
+    }
+
+    .cell {
+      padding: 2px;
+    }
+
+    .cell.-line {
+      grid-column: 1 / -1;
+      padding: 2px;
+      height: 16px;
+    }
+
+    .cell.-line.-text {
+      height: auto;
+      padding: 2px;
+      font-size: 90%;
+      font-weight: bold;
+      font-style: italic;
+    }
+
+    .cell.-line.-text>span {
+      font-weight: initial;
+    }
+
+    .cell.-b.-result,
+    .legend-cell-sample.-result {
+      background-color: rgb(255, 204, 102);
+    }
+
+    .cell.-b.-result {}
+
+    .cell.-b.-input {
+      padding: 0;
+    }
+
+    ::placeholder {
+      font-family: monospace, monospace;
+      font-weight: bold;
+      font-size: 14px;
+      opacity: 0.4;
+    }
+
+    input[type="number"],
+    .legend-cell-sample.-input {
+      background-color: rgb(255, 255, 153);
+    }
+
+    input[type="number"] {
+      border: none;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      font-size: 90%;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #vinegar-percent:focus,
+    #oil-percent:focus {
+      z-index: 32;
+    }
+
+    .favicon-link:link,
+    .favicon-link:visited {
+      font-size: 80%;
+      font-style: italic;
+    }
+
+    /* ##### Index [End] ##### */
+    /* ##### Details dropdown [Start] ##### */
+    details {
+      text-align: initial;
+      margin: 10px 10px 0px 20px;
+      align-self: flex-start;
+    }
+
+    summary {
+      padding: 4px;
+      outline: 1px solid black;
+      text-align: center;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 210px;
+    }
+
+    summary:hover {
+      outline-width: 2px;
+    }
+
+    .details-body {
+      padding: 2px;
+    }
+
+    .details-body.-top {
+      margin-top: 10px;
+    }
+
+    .details-body.-top>p {
+      text-indent: 4px;
+    }
+
+    .details-body.-top p,
+    details ol li {
+      padding: 2px;
+    }
+
+    details ol {
+      padding: 2px;
+    }
+
+    details ol li {
+      margin-left: 20px;
+
+    }
+
+    details hr {
+      margin: 10px auto;
+      max-width: 80%;
+      text-align: center;
+    }
+
+    .details-top summary {
+      color: var(--blue-text-links);
+    }
+
+    .details-bottom {
+      margin-top: 0;
+    }
+
+    .details-bottom summary {
+      color: var(--orange-menu-color);
+    }
+
+    .details-body.-bottom {
+      margin-bottom: 20px;
+    }
+
+    /* ##### Details dropdown [End] ##### */
+    /* ##### Top navigation [Start] ##### */
+    nav.top-nav {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px 16px;
+    }
+
+    .btn-menu {
+      color: rgb(192, 0, 0);
+      font-weight: bold;
+      /* font-size: 22.4px; */
+      font-size: 21px;
+    }
+
+    .btn-predefined-values {
+      background-color: white;
+      color: green;
+      font: inherit;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    a.top-nav:link,
+    a.top-nav:visited,
+    button.top-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      border: 1px solid black;
+      border-radius: 6px;
+      height: 38px;
+      width: 38px;
+      text-decoration: none;
+    }
+
+    a.top-nav:hover,
+    a.top-nav:active,
+    button.top-nav:hover,
+    button.top-nav:active {
+      outline: 1px solid black;
+    }
+
+    #link-legend:link,
+    #link-legend:visited {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: var(--orange-menu-color);
+    }
+
+
+    #link-offline:link,
+    #link-offline:visited {
+      width: auto;
+      padding: 0 10px;
+      font-weight: bold;
+      color: #366092;
+      text-decoration: underline;
+    }
+
+    /* @media (hover: hover) {}
+@media (hover: none) {} */
+
+    /* ##### Top navigation [End] ##### */
+    /* ##### Borders [Start] ##### */
+    article.card>header {
+      border-bottom: 1px solid black;
+    }
+
+    .rows-container {
+      border-bottom: 1px solid black;
+    }
+
+    .rows-container.-no-border {
+      border-bottom: none;
+    }
+
+    .cell.-a {
+      border-left: 1px solid black;
+      border-top: 1px solid black;
+    }
+
+    .cell.-a.-inner {
+      border-left: none;
+    }
+
+    .cell.-b {
+      border-left: 1px solid black;
+      border-right: 1px solid black;
+      border-top: 1px solid black;
+    }
+
+    .cell.-b.-inner {
+      border-left: none;
+      border-right: none;
+    }
+
+    .cell.-line {
+      border-top: 1px solid black;
+    }
+
+    .cell.-line .-text {
+      border: none;
+    }
+
+    .cell.-no-border {
+      border: none;
+    }
+
+    .cell.-full-border {
+      border: 1px solid black;
+    }
+
+    /* ##### Borders [End] ##### */
+    /* ##### Buttons [Start] ##### */
+    button {
+      cursor: pointer;
+    }
+
+    button>* {
+      pointer-events: none;
+    }
+
+    button svg {
+      z-index: 0;
+    }
+
+    /* FORM BUTTONS group [Start] */
+    .btns-group {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      max-width: 320px;
+      width: 100%;
+    }
+
+    .btn-submit svg,
+    .btn-reset svg,
+    .btn-save svg {
+      width: 65%;
+      height: 65%;
+    }
+
+    .btn-submit,
+    .btn-reset,
+    .btn-save {
+      background-color: rgb(244, 244, 244);
+      border: 1px solid black;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 46px;
+      height: 46px;
+    }
+
+    @media (hover: hover) {
+
+      .btn-submit:hover,
+      .btn-reset:hover,
+      .btn-save:hover {
+        border-width: 2px;
+        background-color: white;
+      }
+    }
+
+    @media (hover: none) {
+
+      .btn-submit:active,
+      .btn-reset:active,
+      .btn-save:active {
+        border-width: 2px;
+        background-color: white;
+      }
+    }
+
+    /* FORM BUTTONS group [End] */
+
+
+    /* GLOBAL BUTTONS group [Start] */
+    .btns-global {
+      position: fixed;
+      right: 10px;
+      bottom: 70px;
+    }
+
+    /* To-top button */
+    .btn-to-top-container {
+      display: none;
+    }
+
+    :root {
+      --gray-svg: rgba(255, 255, 255, 0.8);
+    }
+
+    .btn.-global {
+      background-color: rgba(128, 128, 128, 0.8);
+      border: 1px solid rgba(128, 128, 128, 0.8);
+      border-radius: 50%;
+      z-index: 99;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 5px;
+    }
+
+    @media (hover: hover) {
+
+      .btn.-global:hover {
+        border: 2px solid rgba(128, 128, 128, 0.8);
+        background-color: rgba(255, 255, 255, 0.8);
+        --gray-svg: rgba(128, 128, 128, 0.8);
+      }
+
+    }
+
+    @media (hover: none) {
+      .btn.-global:active {
+        border: 2px solid rgba(128, 128, 128, 0.8);
+        background-color: rgba(255, 255, 255, 0.8);
+        --gray-svg: rgba(128, 128, 128, 0.8);
+      }
+
+    }
+
+    .btn.-global:hover,
+    .btn.-global:active {
+      border: 2px solid rgba(128, 128, 128, 0.8);
+      background-color: rgba(255, 255, 255, 0.8);
+      --gray-svg: rgba(128, 128, 128, 0.8);
+    }
+
+    /* Buttons - Svg */
+    .btn.-global svg {
+      width: 75%;
+      height: 75%;
+      z-index: 0;
+    }
+
+    #svg-global-reset path,
+    #svg-global-save path {
+      stroke-width: 24px;
+    }
+
+    #svg-global-save ellipse {
+      stroke-width: 24px;
+    }
+
+    #svg-global-go-to-top polyline {
+      stroke-width: 24px;
+    }
+
+    /* ##### Buttons [End] ##### */
+    /* ##### Legend [Start] ##### */
+    .-version {
+      padding: 10px 12px 0 12px;
+      text-align: center;
+      font-style: italic;
+      font-weight: bold;
+      color: var(--red-menu-color);
+    }
+
+    h5.-legend {
+      font-size: 1em;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .legend-cell-sample {
+      border: 1px solid black;
+      display: inline-block;
+      text-align: center;
+      padding: 4px;
+      font-size: 90%;
+      width: 100%;
+    }
+
+    .-placeholder {
+      font-family: monospace, monospace;
+      font-size: 90%;
+      font-weight: bold;
+      color: gray;
+    }
+
+
+    /* Legend Grid - Start */
+    .legend-grid {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      row-gap: 6px;
+      column-gap: 4px;
+      font-size: 98%;
+    }
+
+    .-legend-grid-full-row {
+      grid-column: 1/-1;
+      padding: 8px;
+    }
+
+    .-legend-grid-item button {
+      pointer-events: none;
+    }
+
+    .-legend-grid-item.-a {
+      justify-self: center;
+      align-self: flex-start;
+    }
+
+    .-legend-grid-item.-b::before {
+      /* content: "\27A2"; */
+      content: "\2794";
+    }
+
+    .text-bullet::before {
+      /* content: "\00a0\27A2\00a0"; */
+      content: "\00a0\2794\00a0";
+    }
+
+    .legend-grid.-btns {
+      grid-template-columns: 50px 1fr;
+    }
+
+    .legend-grid.-text {
+      grid-template-columns: 1fr;
+    }
+
+    .legend-grid.-text p {
+      padding: 0px 4px;
+    }
+
+    /* Legend Grid - End */
+
+
+    #btn-predefined-sample {
+      padding: 0;
+      margin: 0;
+      width: 36px;
+      height: 36px;
+    }
+
+    #btn-reset-sample,
+    #btn-submit-sample,
+    #btn-save-sample {
+      width: 38px;
+      height: 38px;
+    }
+
+    .-btn-global {
+      margin: 0;
+    }
+
+    /* ##### Legend [End] ##### */
+    /* ##### Small Elements [Start] ##### */
+    .warning {
+      border-radius: 4px;
+      background-color: var(--red-menu-color);
+      color: white;
+      padding: 4px 6px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      font-size: 90%;
+    }
+
+    .check-mark {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 25px;
+      height: 25px;
+    }
+
+    .equal-sign,
+    .multiply-sign {
+      font-size: 120%;
+    }
+
+    .equal-sign>span,
+    .multiply-sign>span {
+      transform: translateX(1px);
+    }
+
+    /* Alert - Onclick */
+    .temp-alert {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 50%;
+      right: 50%;
+      transform: translate(50%, 50%);
+      color: white;
+      font-size: 26px;
+      font-weight: bold;
+      padding: 15px;
+      border: 4px solid white;
+      border-radius: 50%;
+    }
+
+    /* Comments */
+    .comment {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .comment>* {
+      cursor: pointer;
+    }
+
+    .comment::after,
+    .comment-green::after {
+      content: '';
+      border-width: 3px;
+      border-style: solid;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    .comment::after {
+      border-color: red red transparent transparent;
+    }
+
+    .-comment-green::after {
+      border-color: green green transparent transparent;
+    }
+
+    .comment-box {
+      max-width: 300px;
+      visibility: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 10px 20px;
+      border: 2px solid rgb(192, 0, 0);
+      border-radius: 6px;
+      padding: 10px;
+      background-color: lightgoldenrodyellow;
+      color: black;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    .comment:hover .comment-box {
+      visibility: visible;
+      z-index: 99;
+    }
+
+    /* ##### Small Elements [End] ##### */
+    /* ##### QUERIES [Start] ##### */
+    /* Queries points >>> 1200px / 1000px / 680px / 370px / 350px / 308px / 300px / 220px */
+
+    @media (max-width: 1200px) {
+      .--grid-3-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+
+    }
+
+    @media (max-width: 680px) {
+      .--grid-3-cols {
+        grid-template-columns: 1fr;
+      }
+
+      hr {
+        margin-bottom: 40px;
+      }
+
+    }
+
+    @media (max-width: 400px) {
+      .legend-cell-sample {
+        width: 120px;
+      }
+
+      .legend-grid.-fields {
+        grid-template-columns: 1fr;
+      }
+
+      .legend-grid.-fields .-legend-grid-item.-a {
+        justify-self: left;
+      }
+
+      .legend-grid.-fields .-legend-grid-item.-b,
+      .legend-grid.-fields .-legend-grid-full-row {
+        padding-bottom: 16px;
+      }
+
+      .legend-grid.-btns,
+      .legend-grid.-text {
+        row-gap: 16px;
+      }
+
+    }
+
+    /* ##### QUERIES [End] ##### */
+    /* ##### Modal [Start] ##### */
+    .modal {
+      background-color: rgba(0, 0, 0, 0.5);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .modal.open {
+      opacity: 1;
+      z-index: 120;
+    }
+
+    .modal .content {
+      max-width: 500px;
+      font-family: sans-serif;
+      background-color: white;
+      color: black;
+      border-radius: 6px;
+      text-align: center;
+      padding: 2rem;
+      box-shadow: 0 0 64px 12px rgba(255, 255, 255, 0.2);
+      margin: 0 20px;
+    }
+
+    .modal .title-text {
+      font-weight: 900;
+      font-size: 2rem;
+    }
+
+    .modal .msg-text {
+      margin: 2rem;
+    }
+
+    .modal .content button {
+      width: 40%;
+      padding: 0.75rem;
+      margin: 0 5px;
+      color: white;
+      border: 1px solid black;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .modal .content button:hover,
+    .modal .content button:active {
+      outline: 1px solid black;
+    }
+
+    .modal .content button.btn-cancel {
+      background-color: rgb(192, 0, 0);
+    }
+
+    .modal .content button.btn-confirm {
+      background-color: green;
+    }
+
+    .btn-cancel:focus,
+    .btn-confirm:focus {
+      /* box-shadow: 0 0 4px 4px gray; */
+    }
+
+    /* ##### Modal [End] ##### */
+    .cell.-line.-text.-above {
+      padding-bottom: 0;
+    }
+
+    .cell.-line.-text.-explain {
+      border: none;
+      padding-top: 0;
+      color: rgb(192, 0, 0);
+      font-size: 90%;
+      font-style: italic;
+      font-weight: normal;
+      /* margin-bottom: 4px; */
+    }
+  </style>
+</head>
+
+<body>
+  <script>0</script>
+  <header class="-page">
+    <h1>Тесто за баница</h1>
+    <h2>(online калкулатор)</h2>
+  </header>
+
+  <details class="details-top">
+    <summary>Пояснения: ...</summary>
+    <div class="details-body -top">
+      <p>
+        Задачата на калкулатора е да изчисли необходимите съставки за замесването на тесто (за кори за баница), по
+        зададени от нас:
+      </p>
+
+      <ol>
+        <li>
+          Тегло на тестото, което желаем да получим;
+        </li>
+        <li>
+          Формула на тестото;<br>
+          * Основната съставка е съдържащото се в тестото брашно. Всички останали съставки се изразяват като
+          процент от него;
+        </li>
+      </ol>
+
+      <div class="said-in-different-way">... Kазано по друг начин ...
+      </div>
+      <div>
+        <P class="used-when">Използваме, когато:</P>
+        <p>Имаме конкретна хлебна формула (формула на тестото) и дадено количество тесто, което желаем да получим.;</p>
+        <p class="and-txt">и</p>
+        <p>Искаме да изчислим количествата на съставките, които е необходимо да използваме при замесването.;</p>
+
+      </div>
+
+    </div>
+
+    <hr>
+
+  </details>
+
+  <nav class="top-nav">
+    <!-- <a href="../" id="link-menu" class="top-nav link-legend btn-menu" title="Меню">М</a> -->
+    <a href="#legend" id="link-legend" class="top-nav link-legend" title="Легенда">?</a>
+
+    <button type="button" id="btn-predefined-values" class="top-nav btn-predefined-values"
+      title="Попълване на полетата за свободно въвеждане с примерни стойности">П</button>
+
+    <!-- <a href="./offline" id="link-offline" class="top-nav link-offline " title="Offline версия">Offline</a> -->
+    <!-- <div class="warning">UNDER CONSTRUCTION</div> -->
+  </nav>
+
+  <main class="--grid-3-cols">
+
+    <!-- ##### First Column ##### -->
+    <section class="page-column">
+
+      <fieldset>
+        <form id="form-main" name="formMain">
+
+          <!-- ##### (1.3) ##### -->
+          <article class="card">
+            <header>
+              <h3>(1.3) Тегло на тестото</h3>
+            </header>
+
+            <div class="card-body">
+              <div class="rows-container --grid-2-cols">
+                <!-- Row -->
+                <div class="cell -a">
+                  <label for="_crusts-count">Кори за баница, (брой):</label>
+                </div>
+                <div class="cell -b -input">
+                  <input type="number" step="1" min="0" name="crustsCount" id="crusts-count" placeholder="пр. 5"
+                    required autofocus>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line multiply-sign"><span>&times;</span></div>
+
+                <!-- Row -->
+                <div class="cell -a">
+                  <label for="_crust-weight">Тегло на тестото за една кора, (g):</label>
+                </div>
+                <div class="cell -b -input">
+                  <input type="number" step="1" min="0" name="crustWeight" id="crust-weight" placeholder="пр. 150"
+                    required>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line equal-sign"><span>&equals;</span></div>
+
+                <!-- Row -->
+                <div class="cell -a">Тегло на общото тесто, (g):</div>
+                <div class="cell -b -result">
+                  <output id="dough-weight" name="doughWeight">....</output>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ##### (2.3) ##### -->
+          <article class="card">
+            <header>
+              <h3>(2.3) Формула на тестото</h3>
+            </header>
+
+            <div class="card-body">
+              <div class="rows-container --grid-2-cols">
+                <!-- Row -->
+                <div class="cell -a comment">
+                  <label for="_hydration-percent">h<span class="superscript">тесто</span>, (%):</label>
+                  <aside class="comment-box">
+                    Хидратация на тестото;
+                  </aside>
+                </div>
+                <div class="cell -b -input">
+                  <input type="number" step="1" min="50" max="125" name="hydrationPercent" id="hydration-percent"
+                    placeholder="пр. 55" required>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line"></div>
+
+                <!-- Row -->
+                <div class="cell -a comment">
+                  <label for="_salt-percent">Сол, (%):</label>
+                  <aside class="comment-box">
+                    При тестото за баница, обикновено е препоръчително
+                    солта да не надвишава 3%;
+                  </aside>
+                </div>
+                <div class="cell -b -input">
+                  <input type="number" step="0.1" min="0" max="7.0" name="saltPercent" id="salt-percent"
+                    placeholder="пр. 2.5" required>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line"></div>
+
+                <!-- Row - Line -->
+                <div class="cell -line -text -above">Допълнителни съставки</div>
+                <div class="cell -line -text -explain">(включват се в хидратацията)</div>
+
+                <!-- Row -->
+                <div class="cell -a comment -comment-green">
+                  <label for="_vinegar-percent">Оцет, (%):</label>
+                  <aside class="comment-box">
+                    % от брашното;<br />
+                    <span class="text-green italic">*Полето не е задължително;</span>
+                  </aside>
+                </div>
+                <div class="cell -b -input">
+                  <input type="number" step="0.1" min="0" max="7.0" name="vinegarPercent" id="vinegar-percent"
+                    placeholder="пр. 0.5">
+                </div>
+
+                <!-- Row -->
+                <div class="cell -a comment -comment-green">
+                  <label for="_oil-percent">Олио, (%):</label>
+                  <aside class="comment-box">
+                    % от брашното;<br />
+                    <span class="text-green italic">*Полето не е задължително;</span>
+                  </aside>
+                </div>
+                <div class="cell -b -input">
+                  <input type="number" step="0.1" min="0" max="7.0" name="oilPercent" id="oil-percent"
+                    placeholder="пр. 0.5">
+                </div>
+              </div>
+
+            </div>
+          </article>
+        </form>
+      </fieldset>
+
+    </section>
+
+    <!-- ##### Second Column ##### -->
+    <section class="page-column">
+
+      <fieldset>
+        <form>
+          <!-- ##### (3.3) ##### -->
+          <article id="results-fMain" class="card --last-child">
+            <header>
+              <h3>(3.3) Изчислена формула</h3>
+            </header>
+
+            <div class="card-body">
+              <div class="rows-container --grid-2-cols">
+                <!-- Row -->
+                <div class="cell -a">Брашно, (g):</div>
+                <div class="cell -b -result">
+                  <output id="flour-weight" name="flourWeight" form="form-main">....</output>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line"></div>
+
+                <!-- Row -->
+                <div class="cell -a">Сол, (g):</div>
+                <div class="cell -b -result">
+                  <output id="salt-weight" name="saltWeight" form="form-main">....</output>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line"></div>
+
+                <!-- Row - Line -->
+                <div class="cell -line -text">
+                  Течни съставки:&nbsp;
+                  <output id="liquid-indreds-weight" name="liquidIngredsWeight" class="-secondary"
+                    form="form-main">...</output>
+                </div>
+
+                <!-- Row -->
+                <div class="cell -a">Вода, (g):</div>
+                <div class="cell -b -result">
+                  <output id="water-weight" name="waterWeight" form="form-main">....</output>
+                </div>
+
+                <!-- Row - Line -->
+                <div class="cell -line"></div>
+
+                <!-- Row - Line -->
+                <div class="cell -line -text">Допълнителни съставки</div>
+
+                <!-- Row -->
+                <div class="cell -a">Оцет, (g):</div>
+                <div class="cell -b -result">
+                  <output id="vinegar-weight" name="vinegarWeight" form="form-main">...</output>
+                </div class="cell -b -result">
+
+                <!-- Row -->
+                <div class="cell -a">Олио, (g):</div>
+                <div class="cell -b -result">
+                  <output id="oil-weight" name="oilWeight" form="form-main">...</output>
+                </div>
+              </div>
+
+            </div>
+          </article>
+
+          <!-- ##### Buttons Group (Main) ##### -->
+          <div class="btns-group -main">
+
+            <!-- Reset button -->
+            <button type="reset" class="btn-reset" id="btn-reset-main" form="form-main"
+              title="Нулиране на полетата от текущата форма">
+              <svg>
+                <use href="#svg-form-refresh"></use>
+              </svg>
+            </button>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn-submit" id="btn-submit-main" form="form-main"
+              title="Изчисляване на търсените стойности">
+              <svg>
+                <use href="#svg-form-calculate"></use>
+              </svg>
+            </button>
+
+            <!-- Save button -->
+            <button type="button" class="btn-save" id="btn-save-main" form="form-main"
+              title="Запаметяване на стойностите от полетата на текущата форма">
+              <svg>
+                <use href="#svg-form-save"></use>
+              </svg>
+            </button>
+
+          </div>
+
+          <hr />
+
+        </form>
+      </fieldset>
+
+    </section>
+
+    <!-- ##### Third Column ##### -->
+    <section class="page-column">
+    </section>
+
+  </main>
+
+
+  <details class="details-bottom">
+    <summary id="legend">Легенда: ...</summary>
+    <div class="details-body -bottom">
+
+      <!-- Версия -->
+      <div class="-version">
+        <p>Версия: <span id="version"></span></p>
+      </div>
+
+      <!-- Понятия -->
+      <h5 class="-legend">Понятия</h5>
+
+      <div class="legend-grid -text">
+        <p>
+          <span class="bold">h<span class="superscript">тесто</span></span>
+          <span class="text-bullet"></span>Хидратация на тестото. Показва
+          съдържанието на течности в тестото,
+          изразено
+          като
+          процент от съдържащото се в тестото брашно;
+        </p>
+      </div>
+
+      <!-- Стойности -->
+      <h5 class="-legend">Стойности</h5>
+
+      <div class="legend-grid -text">
+        <p>
+          <span class="bold">h<span class="superscript">тесто</span></span> <span class="text-bullet"></span>Обичайно,
+          баничното тесто е
+          сравнително
+          твърд
+          тип тесто.<br>
+          Неговата хидратация варира в диапазона на 50 - 60%. ;
+        </p>
+
+        <p>
+          <span class="bold">Сол, (%)</span><span class="text-bullet"></span>При замесването на хляб, обикновено,
+          теглото на солта е 2% (или
+          около
+          2%)
+          от
+          теглото на брашното.<br>
+          При тестото за баница, обикновено, този процент е завишен и варира в диапазона на 2 - 3%. ;
+        </p>
+      </div>
+
+      <!-- Полета -->
+      <h5 class="-legend">Полета</h5>
+
+      <div class="legend-grid -fields">
+
+        <!-- Row -->
+        <p class="-legend-grid-full-row -grid-item">
+          *Десетичният знак се изписва с „точка” или „запетая”;<br>
+          (в зависимост от регионалните настройки на операционната
+          система)
+        </p>
+
+        <!-- Row -->
+        <p class="legend-cell-sample -input -legend-grid-item -a">[ число ]</p>
+        <p class="-legend-grid-item -b">
+          Поле за свободно въвеждане на стойност;
+          <!-- Променлива стойност. / Стойност, подлежаща на промяна, която задаваме свободно; -->
+        </p>
+
+        <!-- Row -->
+        <p class="legend-cell-sample -input -placeholder -legend-grid-item -a">пр. [число]</p>
+        <p class="-legend-grid-item -b">
+          Примерна стойност;
+        </p>
+
+        <!-- Row -->
+        <p class="legend-cell-sample -result -legend-grid-item -a">[ число ]</p>
+        <p class="-legend-grid-item -b">
+          Поле със стойност, която търсим (изчислена на базата на въведените от нас стойности);
+          <!-- Стойността, която търсим (изчислена на базата на зададените от нас стойности); -->
+        </p>
+
+        <!-- Row -->
+        <p class="legend-cell-sample comment -legend-grid-item -a">[ текст ]</p>
+        <p class="-legend-grid-item -b">
+          Поле с пояснение (при посочване на полето). Пояснението се появява горе-вляво.;
+        </p>
+
+        <!-- Row -->
+        <p class="legend-cell-sample comment -comment-green -legend-grid-item -a">[ текст ]</p>
+        <p class="-legend-grid-item -b">
+          Поле с пояснение (при посочване на полето). Пояснението се появява горе-вляво. / Незадължително поле;
+        </p>
+
+      </div>
+
+
+      <!-- Бутони -->
+      <h5 class="-legend">Бутони</h5>
+
+      <div class="legend-grid -btns">
+
+        <!-- Row -->
+        <!-- Predefined values button sample -->
+        <p class="-legend-grid-item -a">
+          <button id="btn-predefined-sample" class="top-nav btn-predefined-values" tabindex="-1">П</button>
+        </p>
+        <p class="-legend-grid-item -b">
+          Попълване на полетата за свободно въвеждане с примерни стойности;
+        </p>
+
+        <!-- Row -->
+        <!-- Submit button sample -->
+        <p class="-legend-grid-item -a">
+          <button id="btn-submit-sample" class="btn-submit" tabindex="-1">
+            <svg>
+              <use href="#svg-form-calculate"></use>
+            </svg>
+          </button>
+        </p>
+        <p class="-legend-grid-item -b">
+          Изчисляване на търсените стойности;
+        </p>
+
+        <!-- Row -->
+        <!-- Reset button sample -->
+        <p class="-legend-grid-item -a">
+          <button id="btn-reset-sample" class="btn-reset" tabindex="-1">
+            <svg>
+              <use href="#svg-form-refresh"></use>
+            </svg>
+          </button>
+        </p>
+        <p class="-legend-grid-item -b">
+          Нулиране на полетата от текущата форма;
+        </p>
+
+        <!-- Row -->
+        <!-- Save button sample -->
+        <p class="-legend-grid-item -a">
+          <button id="btn-save-sample" class="btn-save" tabindex="-1">
+            <svg>
+              <use href="#svg-form-save"></use>
+            </svg>
+          </button>
+        </p>
+        <p class="-legend-grid-item -b">
+          Запаметяване на стойностите от полетата на текущата форма;
+        </p>
+
+        <!-- Row -->
+        <!-- Global Reset Button sample -->
+        <div class="-legend-grid-item -a">
+          <button type="button" class="btn-reset-global btn -global" tabindex="-1">
+            <svg>
+              <use href="#svg-global-reset"></use>
+            </svg>
+          </button>
+        </div>
+        <p class="-legend-grid-item -b">
+          Нулиране на всички полета и освобождаване на паметта, свързана с текущата страница;
+        </p>
+
+        <!-- Row -->
+        <!-- Global Save Button sample -->
+        <div class="-legend-grid-item -a">
+          <button type="button" class="btn-save-global btn -global" tabindex="-1">
+            <svg>
+              <use href="#svg-global-save"></use>
+            </svg>
+          </button>
+        </div>
+        <p class="-legend-grid-item -b">
+          Запаметяване на стойностите от всички полета на текущата страница;
+        </p>
+
+      </div>
+
+      <!-- Навигация в страницата -->
+      <h5 class="-legend">Клавиатура (команди)</h5>
+
+      <div class="legend-grid -text">
+        <p>
+          При работа на настолен или преносим компютър би могло да се използва клавиатурата:
+        </p>
+
+        <p>
+          <code>[Tab]</code><br>
+          <span class="text-bullet"></span>Преминаване от един интерактивен елемент към друг;<br>
+          * Интерактивни елементи (елементи, податливи на взаимодействие с потребителя): полета за свободно въвеждане /
+          бутони / хипервръзки ... ;
+        </p>
+
+        <p>
+          <code>[Shift] + [Tab]</code><br>
+          <span class="text-bullet"></span>Връщане към предходен интерактивен елемент;
+        </p>
+
+        <p>
+          <code>[Enter]</code><br>
+          <span class="text-bullet"></span>Моментално изчисляване (когато някое поле за въвеждане е на фокус);<br>
+          <span class="text-bullet"></span>Активиране на действието на даден бутон или хипервръзка;
+        </p>
+
+      </div>
+
+    </div>
+
+    <hr>
+
+  </details>
+
+  <footer class="-page">
+    <ul>
+      <li>
+        <a class="page-footer-link" href="https://nstratiev.github.io/bread-calculator-bg/">Bread-calculator-bg</a>
+      </li>
+      <!-- <li>
+        <a href="./offline" class="page-footer-link">Offline версия</a>
+      </li> -->
+      <li>
+        <a class="page-footer-link github-link" href="https://github.com/nstratiev/online-banica-calculator">GitHub</a>
+      </li>
+      <li>
+        <a class="page-footer-link favicon-link" href="https://www.freepik.com/icon/rolling-pin_5637312"
+          target="_blank">Favicon by
+          Circlon Tech</a>
+      </li>
+    </ul>
+  </footer>
+
+  <!-- Global buttons -->
+  <aside class="btns-global">
+
+    <!-- Global Reset Button -->
+    <button type="button" class="btn -global btn-reset-global" id="btn-reset-global"
+      title="Нулиране на всички полета и освобождаване на паметта, свързана с текущата страница" tabindex="-1">
+      <svg>
+        <use href="#svg-global-reset"></use>
+      </svg>
+    </button>
+
+    <!-- Global Save Button -->
+    <button type="button" class="btn -global btn-save-global" id="btn-save-global"
+      title="Запаметяване на стойностите от всички полета на текущата страница" tabindex="-1">
+      <svg>
+        <use href="#svg-global-save"></use>
+      </svg>
+    </button>
+
+    <!-- Go-to-top Button -->
+    <div class="btn-to-top-container">
+      <button type="button" class="btn -global btn-to-top" id="btn-to-top" tabindex="-1">
+        <svg>
+          <use href="#svg-global-go-to-top"></use>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+
+  <!-- ##### SVG (https://phosphoricons.com/) ##### -->
+  <!-- SVG - forms -->
+  <aside>
+    <svg xmlns="http://www.w3.org/2000/svg" class="svg-group-forms" style="display: none;">
+
+      <!-- Refresh svg -->
+      <symbol id="svg-form-refresh" viewBox="0 0 256 256">
+        <title>Refresh svg - light 16px RAW</title>
+        <rect width="256" height="256" fill="none" />
+        <polyline points="24 56 24 104 72 104" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <path d="M67.59,192A88,88,0,1,0,65.77,65.77L24,104" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+      </symbol>
+
+      <!-- Calculate svg -->
+      <symbol id="svg-form-calculate" viewBox="0 0 256 256">
+        <title>Calculate svg - light 16px RAW</title>
+        <rect width="256" height="256" fill="none" />
+        <rect x="80" y="64" width="96" height="48" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <rect x="32" y="48" width="192" height="160" rx="8" transform="translate(256) rotate(90)" fill="none"
+          stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+        <circle cx="88" cy="148" r="10" />
+        <circle cx="128" cy="148" r="10" />
+        <circle cx="168" cy="148" r="10" />
+        <circle cx="88" cy="188" r="10" />
+        <circle cx="128" cy="188" r="10" />
+        <circle cx="168" cy="188" r="10" />
+      </symbol>
+
+      <!-- Save svg -->
+      <symbol id="svg-form-save" viewBox="0 0 256 256">
+        <title>Save svg - light 16px RAW</title>
+        <rect width="256" height="256" fill="none" />
+        <path
+          d="M216,83.31V208a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H172.69a8,8,0,0,1,5.65,2.34l35.32,35.32A8,8,0,0,1,216,83.31Z"
+          fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+        <path d="M80,216V152a8,8,0,0,1,8-8h80a8,8,0,0,1,8,8v64" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <line x1="152" y1="72" x2="96" y2="72" fill="none" stroke="currentColor" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+      </symbol>
+
+    </svg>
+  </aside>
+
+  <!-- SVG - global -->
+  <aside>
+    <svg xmlns="http://www.w3.org/2000/svg" class="svg-group-global" style="display: none;">
+
+      <!-- Global Reset svg -->
+      <symbol id="svg-global-reset" class="" viewBox="0 0 256 256">
+        <title>Global Refresh svg - global 16px RAW</title>
+        <rect width="256" height="256" fill="none" />
+        <polyline points="88 96 40 96 40 48" fill="none" stroke="var(--gray-svg)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <path d="M40,96,68.28,67.72A88,88,0,0,1,192,67" fill="none" stroke="var(--gray-svg)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <polyline points="168 160 216 160 216 208" fill="none" stroke="var(--gray-svg)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <path d="M216,160l-28.28,28.28A88,88,0,0,1,64,189" fill="none" stroke="var(--gray-svg)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+      </symbol>
+
+      <!-- Global Save svg -->
+      <symbol id="svg-global-save" class="" viewBox="0 0 256 256">
+        <title>Global Save svg - global 16px RAW</title>
+        <rect width="256" height="256" fill="none" />
+        <ellipse cx="128" cy="80" rx="88" ry="48" fill="none" stroke="var(--gray-svg)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+        <path d="M40,80v48c0,26.51,39.4,48,88,48s88-21.49,88-48V80" fill="none" stroke="var(--gray-svg)"
+          stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+        <path d="M40,128v48c0,26.51,39.4,48,88,48s88-21.49,88-48V128" fill="none" stroke="var(--gray-svg)"
+          stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+      </symbol>
+
+      <!-- Global Go-to-top svg -->
+      <symbol id="svg-global-go-to-top" class="" viewBox="0 0 256 256">
+        <title>Global Go-to-top svg - global 16px RAW</title>
+        <rect width="256" height="256" fill="none" />
+        <polyline points="48 160 128 80 208 160" fill="none" stroke="var(--gray-svg)" stroke-linecap="round"
+          stroke-linejoin="round" stroke-width="12" />
+      </symbol>
+
+    </svg>
+  </aside>
+
+
+  <!-- <script type="module" src=" ./js/main.js"></script> -->
+  <script>
+      (function () {
+        'use strict';
+
+        // ##### Elements [Start] #####
+        const versionElem = document.querySelector('#version');
+
+        // -- Forms
+        const formMain = document.querySelector('#form-main');
+
+        // -- Elements - fMain
+        const resultElementsArr_fMain = getFormOutputsArray(formMain);
+        const resultElementsObj_fMain = getFormOutputsObject(formMain);
+
+        // Buttons
+        const btnPredefinedValues = document.querySelector('.btn-predefined-values');
+
+        // Buttons (Global)
+        const btnsGlobal = document.querySelector('.btns-global');
+        const btnToTop = document.querySelector('#btn-to-top');
+        const btnToTopContainer = btnToTop.parentElement;
+        const btnGlobalReset = document.querySelector('#btn-reset-global ');
+        const btnGlobalSave = document.querySelector('#btn-save-global');
+
+        // -- Functions
+        function getFormOutputsArray(formElem) {
+          return Array.from(formElem.elements).filter(el => el.tagName === 'OUTPUT');
+        }
+
+        function getFormOutputsObject(formElem) {
+          const obj = {};
+          const arr = Array.from(formElem.elements).filter(el => el.tagName === 'OUTPUT');
+          arr.forEach(el => {
+            obj[el.name] = el;
+          });
+
+          return obj;
+        }
+
+        // Constant objects
+        const predefinedData_fMain = {
+          "crustsCount": "5",
+          "crustWeight": "150",
+          "hydrationPercent": "55",
+          "saltPercent": "2.5",
+          "vinegarPercent": "0.0",
+          "oilPercent": "0.0"
+        };
+
+
+        // ##### Elements [End] #####
+
+        // ##### Print [Start] #####
+        function printResult_formMain(resultsData) {
+          const d = resultsData;
+          const el = resultElementsObj_fMain;
+
+          printResult(d.doughWeight, el.doughWeight, 0);
+          printResult(d.flourWeight, el.flourWeight, 0);
+          printResult(d.saltWeight, el.saltWeight, 0);
+          printResult(d.liquidIngredsWeight, el.liquidIngredsWeight, 0, { prefix: '', postfix: ' g' });
+          printResult(d.waterWeight, el.waterWeight, 0);
+          printResult(d.vinegarWeight, el.vinegarWeight, 0);
+          printResult(d.oilWeight, el.oilWeight, 0);
+        }
+
+        function printResult(value, resultElem, toFixedIndex, additionalTextObj) {
+          // additionalTextObj = {prefix: '', postfix: ''};
+          let result;
+
+          if (value) {
+            if (additionalTextObj) {
+              result = `${additionalTextObj.prefix}${value.toFixed(toFixedIndex)}${additionalTextObj.postfix}`;
+            } else {
+              result = `${value.toFixed(toFixedIndex)}`;
+            }
+          } else {
+            result = '';
+          }
+
+          resultElem.style.fontWeight = 'bold';
+          resultElem.textContent = result;
+        }
+
+        // ##### Print [End] #####
+
+        // ##### Class Modal [Start] #####
+        class ConfirmModal {
+          constructor({ titleText, msgText, confirmText, cancelText, msgText2 }) {
+            this.titleText = titleText;
+            this.msgText = msgText;
+            this.confirmText = confirmText;
+            this.cancelText = cancelText;
+            this.msgText2 = msgText2;
+          }
+
+          createAndOpen(onConfirm, onCancel) {
+            this.modalElem = document.createElement('div');
+            this.modalElem.classList.add('modal');
+            setTimeout(() => {
+              this.modalElem.classList.add('open');
+            }, 400);
+
+            const contentElem = document.createElement('div');
+            contentElem.classList.add('content');
+            this.modalElem.appendChild(contentElem);
+
+            // Heading
+            const titleElem = document.createElement('p');
+            titleElem.classList.add('title-text');
+            titleElem.textContent = this.titleText;
+            contentElem.appendChild(titleElem);
+
+            // Message
+            const msgElem = document.createElement('p');
+            msgElem.classList.add('msg-text');
+            if (this.msgText2 !== undefined) {
+              msgElem.innerHTML = this.msgText + '<br/>' + this.msgText2;
+            } else {
+              msgElem.textContent = this.msgText;
+            }
+            contentElem.appendChild(msgElem);
+
+            // Cancel Button
+            if (this.cancelText) {
+              const cancelBtnElem = document.createElement('button');
+              cancelBtnElem.classList.add('btn-cancel');
+              cancelBtnElem.textContent = this.cancelText;
+              cancelBtnElem.addEventListener('click', () => {
+                onCancel('Cancelled');
+                this.close();
+              });
+              contentElem.appendChild(cancelBtnElem);
+              // cancelBtnElem.focus();
+            }
+
+            // Confirm Button
+            if (this.confirmText) {
+              const confirmBtnElem = document.createElement('button');
+              confirmBtnElem.classList.add('btn-confirm');
+              confirmBtnElem.textContent = this.confirmText;
+              confirmBtnElem.addEventListener('click', () => {
+                onConfirm('Confirmed');
+                this.close();
+              });
+              contentElem.appendChild(confirmBtnElem);
+            }
+
+            document.body.appendChild(this.modalElem);
+
+            const cancelBtn = document.querySelector('.btn-cancel');
+            if (cancelBtn) {
+              cancelBtn.focus();
+            } else {
+              document.querySelector('.btn-confirm').focus();
+            }
+          }
+
+          open() {
+            return new Promise((resolve, reject) => {
+              this.createAndOpen(resolve, reject);
+            });
+          }
+
+          close() {
+            this.modalElem.classList.remove('open');
+            setTimeout(() => {
+              document.body.removeChild(this.modalElem);
+            }, 400);
+          }
+        }
+
+        // ##### Class Modal [End] #####
+
+        // ##### Alerts [Start] #####
+        function checkmarkAlertGreen(bool) {
+          if (bool) {
+            temporaryOnClickAlert('&check;', 400, 'green');
+            // setTimeout(() => showModal(ev), 200);
+          }
+        }
+
+        function temporaryOnClickAlert(msg, duration, bgColor) {
+          const containerEl = document.createElement('div');
+          containerEl.setAttribute('class', 'temp-alert');
+          containerEl.style.backgroundColor = bgColor;
+          containerEl.style.outline = `2px solid ${bgColor}`;
+
+          const spanEl = document.createElement('span');
+          spanEl.setAttribute('class', 'check-mark');
+          spanEl.innerHTML = msg;
+          containerEl.appendChild(spanEl);
+          setTimeout(function () {
+            containerEl.parentNode.removeChild(containerEl);
+          }, duration);
+          document.body.appendChild(containerEl);
+        }
+
+        const globalResetConfirmDialog = new ConfirmModal({
+          titleText: '',
+          msgText:
+            'Желаете ли всички запаметени стойности, свързани с настоящата страница, да бъдат изтрити трайно от паметта?',
+          confirmText: 'Да',
+          cancelText: 'Не',
+        });
+
+        const alertEmptyFieldBox = new ConfirmModal({
+          titleText: '',
+          msgText: 'Моля, попълнете всички задължителни полета ...',
+          confirmText: 'OK',
+          cancelText: '',
+          msgText2: ''
+        });
+
+        const alertOutOfRangeBox = new ConfirmModal({
+          titleText: '',
+          msgText: `Моля, въведете стойност в диапазона: `,
+          confirmText: 'OK',
+          cancelText: '',
+          msgText2: '',
+        });
+
+        // ##### Alerts [End] #####
+
+        // ##### Validation [Start] #####
+        function validationOutOfRangeFields(formFieldsArr, pageLoadingObj, resetFormResultsFunc) {
+          for (const item of formFieldsArr) {
+            if (item.type !== 'number') {
+              continue;
+            }
+
+            const num = Number(item.value);
+            const minLimit = Number(item.min);
+            let maxLimit = Number(item.max);
+
+            if (maxLimit === 0) {
+              maxLimit = Number.MAX_SAFE_INTEGER;
+            }
+
+            if (num < minLimit || num > maxLimit) {
+              if (pageLoadingObj.isFirstPageLoad !== true) {
+                resetFormResultsFunc();
+
+                const configArr = inactivateAllFormsAndLinks(true, []);
+
+                alertOutOfRangeBox.msgText2 = `[ ${minLimit} - ${maxLimit} ]`;
+                alertOutOfRangeBox.open()
+                  .then((msg) => { })
+                  .catch((err) => console.log(err))
+                  .finally(() => {
+                    inactivateAllFormsAndLinks(false, configArr);
+                    item.focus();
+                  });
+              }
+
+              return false;
+            }
+          }
+
+          return true;
+        }
+
+        function validationEmptyFields(formFieldsArr, pageLoadingObj, resetFormResultsFunc) {
+          for (const item of formFieldsArr) {
+            if (item.tagName !== 'INPUT' || item.required === false) {
+              continue;
+            }
+
+            if (item.value === '') {
+              if (pageLoadingObj.isFirstPageLoad !== true) {
+                resetFormResultsFunc();
+
+                const configArr = inactivateAllFormsAndLinks(true, []);
+
+                alertEmptyFieldBox.open()
+                  .then((msg) => { })
+                  .catch((err) => console.log(err))
+                  .finally(() => {
+                    inactivateAllFormsAndLinks(false, configArr);
+                    item.focus();
+                  });
+              }
+
+              return false;
+            }
+          }
+
+          return true;
+        }
+
+        // Decimal point inputs validation
+        function attachOnFocusoutDecimalPointValidation() {
+          document.querySelectorAll('input[step="0.1"]').forEach(el => {
+            el.addEventListener('focusout', (ev) => validationForDecimalPoint(ev, el));
+            el.addEventListener('keydown', (ev) => {
+              if (ev.code === 'Enter') {
+                validationForDecimalPoint(ev, el);
+              }
+            });
+          });
+        }
+
+        function validationForDecimalPoint(ev, numField) {
+          const numValue = numField.value;
+
+          if (numValue !== '' && numValue.includes('.') === false) {
+            numField.value = numValue + '.0';
+          }
+        }
+
+        // ##### Validation [End] #####
+
+        // ##### Generic [Start] #####
+        function getFormDataToObject(formElem) {
+          return Object.fromEntries(new FormData(formElem));
+        }
+
+        function getData(formElem, pageLoadingObj, resetFormResultsFunc) {
+          if (validationEmptyFields(formElem.elements, pageLoadingObj, resetFormResultsFunc) === false) {
+            return false;
+          }
+
+          if (validationOutOfRangeFields(formElem.elements, pageLoadingObj, resetFormResultsFunc) === false) {
+            return false;
+          }
+
+          const dataObj = getFormDataToObject(formElem);
+          return dataObj;
+        }
+
+        // -- Form disable
+        function inactivateAllFormsAndLinks(bool, [linkElems, inactivateFunc]) {
+          const allFieldsets = document.querySelectorAll('fieldset');
+          const allLinks = document.querySelectorAll('a');
+          const inactivateLink = (ev) => ev.preventDefault();
+
+          if (bool) {
+            btnsGlobal.style.pointerEvents = 'none';
+            allFieldsets.forEach(el => el.disabled = true);
+            allLinks.forEach(el => el.addEventListener('click', inactivateLink));
+            return [allLinks, inactivateLink];
+
+          } else {
+            btnsGlobal.style.pointerEvents = 'initial';
+            allFieldsets.forEach(el => el.disabled = false);
+            linkElems.forEach(el => el.removeEventListener('click', inactivateFunc));
+          }
+
+        }
+
+        // ##### Generic [End] #####
+
+        const calculatorsCategory = 'banicaCalculators';
+
+        setInitialLocalStorage();
+
+        // Local Storage functions
+        function setInitialLocalStorage() {
+          const banicaStorage = localStorage.getItem(calculatorsCategory);
+
+          if (banicaStorage === null) {
+            localStorage.setItem(calculatorsCategory, JSON.stringify({}));
+          }
+
+        }
+
+        // ##### Storage [Start] #####
+        const calculatorName = 'calcBanica';
+
+        function setLocalStorage(dataObj, formName) {
+          const calculatorData = JSON.parse(localStorage.getItem(calculatorsCategory));
+
+          calculatorData[calculatorName] = {
+            [formName]: dataObj
+          };
+
+          const jsonData = JSON.stringify(calculatorData);
+          localStorage.setItem(calculatorsCategory, jsonData);
+        }
+
+        function getLocalStorage(formName) {
+          const calculatorData = JSON.parse(localStorage.getItem(calculatorsCategory));
+
+          return calculatorData[calculatorName][formName];
+        }
+
+        function clearLocalStorageGlobal() {
+          localStorage.clear();
+        }
+
+        function populateLocaleStorageData(formsArr) {
+          for (const formElem of formsArr) {
+            const localStorageObj = getLocalStorage(formElem.name);
+
+            if (localStorageObj === null) {
+              console.info('No localStorage for this form ...');
+              return null;
+            }
+
+            for (const key in localStorageObj) {
+              const target = formElem[key];
+              // const target = formElem.querySelector(`input[name=${key}]`);
+              target.value = localStorageObj[key];
+            }
+
+          }
+
+        }
+        // ##### Storage [End] #####
+
+        // ##### Reset [Start] #####
+        function onReset_fMain(hasCheckmark) {
+          onReset(null, formMain, resetResults_fMain, hasCheckmark);
+        }
+
+        function resetResults_fMain() {
+          resetResults(resultElementsArr_fMain);
+        }
+
+        // Basic
+        function onGlobalReset() {
+          resetAllForms();
+          const configArr = inactivateAllFormsAndLinks(true, []);
+
+          globalResetConfirmDialog.open()
+            .then((msg) => {
+              clearLocalStorageGlobal();
+              formMain.reset();
+              checkmarkAlertGreen(true);
+              location.reload();
+            })
+            .catch((msg) => { })
+            .finally(() => inactivateAllFormsAndLinks(false, configArr));
+        }
+
+        function resetAllForms() {
+          onReset_fMain(false);
+        }
+
+        function resetResults(resultElementsCollection) {
+          resultElementsCollection.forEach(el => {
+            el.style.fontWeight = 'initial';
+
+            if (el.className.includes('-secondary') === false) {
+              el.textContent = '....';
+            } else {
+              el.textContent = '...';
+            }
+          });
+        }
+
+        function onReset(ev, formElem, resetResultHandler, hasCheckmark) {
+          formElem.reset();
+          resetFieldsOutline(formElem);
+          resetResultHandler();
+
+          checkmarkAlertGreen(hasCheckmark);
+        }
+
+        function resetFieldsOutline(formElem) {
+          const formInputsCollection = formElem.querySelectorAll('input');
+
+          for (const field of formInputsCollection) {
+            field.style.outline = 'none';
+          }
+        }
+
+        // ##### Reset [End] #####
+
+        // ##### Math [Start] #####
+        function calculate_fMain(data) {
+          const doughWeight = getTotalDoughWeight(data.crustsCount, data.crustWeight);
+          const flourWeight = getTotalFlour(doughWeight, data.hydrationPercent, data.saltPercent);
+          const saltWeight = getTotalIngredientWeight(flourWeight, data.saltPercent);
+          const liquidIngredsWeight = getTotalIngredientWeight(flourWeight, data.hydrationPercent);
+          const vinegarWeight = getTotalIngredientWeight(flourWeight, data.vinegarPercent);
+          const oilWeight = getTotalIngredientWeight(flourWeight, data.oilPercent);
+          const waterWeight = getTotalWaterWeight(liquidIngredsWeight, vinegarWeight, oilWeight);
+
+          return { doughWeight, flourWeight, saltWeight, liquidIngredsWeight, vinegarWeight, oilWeight, waterWeight };
+        }
+
+        function getTotalDoughWeight(crustsCount, crustWeight) {
+          return Number(crustsCount) * Number(crustWeight);
+        }
+
+        function getTotalFlour(totalDoughWeight, hydrationPercentValue, saltPercent) {
+          return totalDoughWeight / (1 + Number(hydrationPercentValue / 100) + Number(saltPercent / 100));
+        }
+
+        function getTotalWaterWeight(liquidIngredientsWeight, vinegarWeight, oilWeight) {
+          return liquidIngredientsWeight - (vinegarWeight + oilWeight);
+        }
+
+        function getTotalIngredientWeight(totalFlour, ingredientPercentValue) {
+          return totalFlour * (Number(ingredientPercentValue) / 100);
+        }
+
+        // ##### Math [End] #####
+
+        // ##### Event handlers [Start] #####
+        function onSubmit_initialLoad(ev) {
+          onSubmit(ev, formMain, { isFirstPageLoad: true }, printResult_formMain);
+        }
+
+        // fMain
+        function populatePredefinedValues_fMain() {
+          populatePredefinedValues(formMain, predefinedData_fMain, onReset_fMain);
+        }
+
+        function onSubmit_fMain(ev) {
+          onSubmit(ev, formMain, { isFirstPageLoad: false }, printResult_formMain, resetResults_fMain, '#results-fMain');
+        }
+
+        function onSave_fMain(ev) {
+          onSave(ev, formMain, true);
+        }
+
+        // Basic
+        function onGlobalSave(ev) {
+          const allForms = document.querySelectorAll('form');
+
+          for (const form of allForms) {
+            onSave(ev, form, false);
+          }
+
+          checkmarkAlertGreen(true);
+        }
+
+        function onSave(ev, formElem, hasCheckmark) {
+          const currFormData = getFormDataToObject(formElem);
+          const currFormName = formElem.name;
+          setLocalStorage(currFormData, currFormName);
+
+          checkmarkAlertGreen(hasCheckmark);
+        }
+
+        function onSubmit(ev, formElem, loadingConfig, printFunc, resetFormResultsFunc, href) {
+          if (loadingConfig.isFirstPageLoad !== true) {
+            ev.preventDefault();
+          }
+
+          const data = getData(formElem, loadingConfig, resetFormResultsFunc);
+
+          if (data === false) {
+            return;
+          }
+
+          setLocalStorage(data, formElem.name);
+          const resultsData = calculate_fMain(data);
+          printFunc(resultsData);
+          resetFieldsOutline(formElem);
+
+          if (loadingConfig.isFirstPageLoad !== true) {
+            checkmarkAlertGreen(true);
+
+            if (href) {
+              const screenWidth = window.screen.width;
+              const screenAvailWidth = window.screen.availWidth;
+
+              if (screenWidth <= 680 || screenAvailWidth <= 680) {
+                // location.href = href;
+                document.querySelector(href).scrollIntoView();
+              }
+
+            }
+          }
+
+        }
+
+        function populatePredefinedValues(formElem, predefinedData, resetFormResultsFunc) {
+          resetFormResultsFunc();
+
+          for (const key in predefinedData) {
+            formElem.elements[key].value = predefinedData[key];
+          }
+
+          checkmarkAlertGreen(true);
+        }
+
+        // ##### Event handlers [End] #####
+
+        // ##### Focusout [Start] #####
+        function attachFocusoutValidation() {
+          const formInputsCollection = document.querySelectorAll('input');
+
+          for (const field of formInputsCollection) {
+            field.addEventListener('focusout', () => focusoutEmptyFieldValidation(field));
+            field.addEventListener('focusout', () => focusoutOutOfRangeValidation(field));
+          }
+        }
+
+        function focusoutOutOfRangeValidation(currentField) {
+          if (currentField.type === 'number' && currentField.value !== '') {
+
+            const num = Number(currentField.value);
+            const minLimit = Number(currentField.min);
+            let maxLimit = Number(currentField.max);
+
+            if (maxLimit === 0) {
+              maxLimit = Number.MAX_SAFE_INTEGER;
+            }
+
+            if (num < minLimit || num > maxLimit) {
+              currentField.style.outline = '2px solid red';
+              return false;
+
+            } else {
+              currentField.style.outline = 'none';
+              return true
+            }
+          }
+        }
+
+        function focusoutEmptyFieldValidation(currentField) {
+          if (currentField.required === false) {
+            return;
+          }
+
+          if (currentField.value === '') {
+            currentField.style.outline = '2px solid green';
+
+          } else {
+            currentField.style.outline = 'none';
+          }
+
+        }
+
+        // ##### Focusout [End] #####
+
+        // ##### Scroll [Start] #####
+        function onScreenScroll() {
+          if (
+            document.body.scrollTop > 120 ||
+            document.documentElement.scrollTop > 120
+          ) {
+            btnToTopContainer.style.display = 'block';
+          } else {
+            btnToTopContainer.style.display = 'none';
+          }
+        }
+
+        function goToScreenTop() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+
+          const path = `${window.location.pathname}` || '';
+          const newURL = window.location.protocol + "//" + window.location.host + path;
+          history.replaceState(null, "", newURL);
+        }
+
+        // ##### Scroll [End] #####
+
+        function printCurrentVersion(versionElem) {
+          printCalculatorVersion(versionElem, '0.9');
+        }
+
+        function printCalculatorVersion(versionElem, calculatorVersion) {
+          versionElem.textContent = calculatorVersion;
+        }
+
+        // ##### Index [Start] #####
+
+        // On first page load
+        document.addEventListener('DOMContentLoaded', (ev) => {
+          printCurrentVersion(versionElem);
+          console.log(versionElem);
+
+          populateLocaleStorageData([formMain]);
+          onSubmit_initialLoad(ev);
+
+
+        });
+
+        // -- Button-to-top listeners
+        window.addEventListener('scroll', onScreenScroll);
+        btnToTop.addEventListener('click', goToScreenTop);
+
+        // -- Button predefined values
+        btnPredefinedValues.addEventListener('click', populatePredefinedValues_fMain);
+
+        // -- Buttons - global
+        btnGlobalReset.addEventListener('click', onGlobalReset);
+        btnGlobalSave.addEventListener('click', onGlobalSave);
+
+        // Listeners
+        attachFocusoutValidation();
+        attachOnFocusoutDecimalPointValidation();
+
+        // -- Buttons listeners
+        document.addEventListener('click', (ev) => {
+          if (ev.target.tagName !== 'BUTTON') {
+            return;
+          }
+
+          const btnsGroupClassName = ev.target.parentElement.className;
+          const btnClassName = ev.target.className;
+
+          if (btnsGroupClassName.includes('-main')) {
+            // console.log('MAIN');
+            if (btnClassName === 'btn-submit') {
+              onSubmit_fMain(ev);
+
+            } else if (btnClassName === 'btn-reset') {
+              onReset_fMain(true);
+
+            } else if (btnClassName === 'btn-save') {
+              onSave_fMain(ev);
+            }
+          }
+
+        });
+
+        // ##### Index [End] #####
+
+      })();
+
+
+
+  </script>
+</body>
+
+</html>
