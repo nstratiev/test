@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: azure;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+h1 {
+  margin: 20px 0;
+}
+
+h2 {
+  margin: 18px 0;
+}
+
+hr {
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+}
+
+button {
+  background-color: inherit;
+  /* border: none; */
+  cursor: pointer;
+}
+
+nav.top {
+  padding-left: 20px;
+}
+
+a.btn:link,
+a.btn:visited,
+.btn.top-nav {
+  border: 1px solid black;
+  border-radius: 6px;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+@media (hover: hover) {
+
+  a.btn:hover,
+  .btn.top-nav:hover {
+    outline: 1px solid black;
+  }
+}
+
+a.btn:active,
+.btn.top-nav:active {
+  color: inherit;
+  outline: 2px solid black;
+}
+
+
+@media (max-width: 400px) {
+  nav.top {
+    padding: 0;
+    justify-content: space-around;
+    gap: 0;
+  }
+}
+
+/* FLEXBOX */
+.-flex {
+  display: flex;
+  border: 1px solid green;
+  gap: 40px;
+}
+
+.-flex-item {
+  min-width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* FLOATS */
+.image {
+  border: 1px solid green;
+  /* display: inline-block; */
+  height: 80px;
+  width: 80px;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
