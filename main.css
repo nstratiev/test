@@ -105,12 +105,34 @@ nav.-hover {
   padding: 10px;
 }
 
+.link-hover:link,
+.link-hover:visited,
+.btn-hover {
+  color: inherit;
+  outline: 1px solid black;
+  border-radius: 4px;
+  padding: 4px 10px;
+  text-decoration: none;
+  border-style: none;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+
+}
+
+.link-hover:active,
+.btn-hover:active {
+  background-color: white;
+  color: green;
+  text-decoration: underline;
+}
+
 @media (hover: hover) {
 
   .link-hover:hover,
-  .link-hover:active,
-  .btn-hover:hover,
-  .btn-hover:active {
-    border: 2px solid green;
+  .btn-hover:hover {
+    background-color: white;
+    color: green;
+    text-decoration: underline;
   }
 }
