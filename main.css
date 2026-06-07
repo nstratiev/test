@@ -101,10 +101,16 @@ a.btn:active,
   clear: both;
 }
 
+nav.-hover {
+  padding: 10px;
+}
+
 @media (hover: hover) {
 
   .link-hover:hover,
-  .link-hover:active {
+  .link-hover:active,
+  .btn-hover:hover,
+  .btn-hover:active {
     border: 2px solid green;
   }
 }
