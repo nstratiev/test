@@ -100,3 +100,11 @@ a.btn:active,
 .clear {
   clear: both;
 }
+
+@media (hover: hover) {
+
+  .link-hover:hover,
+  .link-hover:active {
+    border: 2px solid green;
+  }
+}
