@@ -36,6 +36,45 @@ nav.top {
   padding-left: 20px;
 }
 
+.link-hover:link,
+.link-hover:visited,
+.btn-hover {
+  color: inherit;
+  outline: 1px solid black;
+  border-radius: 4px;
+  padding: 4px 10px;
+  text-decoration: none;
+  border-style: none;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+
+}
+
+.link-hover:active,
+.btn-hover:active {
+  background-color: white;
+  color: green;
+  text-decoration: underline;
+}
+
+.link-hover:focus-visible,
+.btn-hover:focus-visible {
+  outline: 4px solid red;
+  color: red;
+}
+
+
+@media (hover: hover) {
+
+  .link-hover:hover,
+  .btn-hover:hover {
+    background-color: white;
+    color: green;
+    text-decoration: underline;
+  }
+}
+
 a.btn:link,
 a.btn:visited,
 .btn.top-nav {
@@ -51,7 +90,7 @@ a.btn:visited,
 
   a.btn:hover,
   .btn.top-nav:hover {
-    outline: 1px solid black;
+    outline: 4px solid purple;
   }
 }
 
@@ -103,36 +142,4 @@ a.btn:active,
 
 nav.-hover {
   padding: 10px;
-}
-
-.link-hover:link,
-.link-hover:visited,
-.btn-hover {
-  color: inherit;
-  outline: 1px solid black;
-  border-radius: 4px;
-  padding: 4px 10px;
-  text-decoration: none;
-  border-style: none;
-  background-color: green;
-  color: white;
-  font-weight: bold;
-
-}
-
-.link-hover:active,
-.btn-hover:active {
-  background-color: white;
-  color: green;
-  text-decoration: underline;
-}
-
-@media (hover: hover) {
-
-  .link-hover:hover,
-  .btn-hover:hover {
-    background-color: white;
-    color: green;
-    text-decoration: underline;
-  }
 }
